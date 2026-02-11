@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Header Section -->
+<header>
+    <h1>ABU JAHED MD RAKIB</h1>
+    <nav>
+        <a href="#bio">Biography</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main>
+
+    <!-- Biography Section -->
+    <section id="bio">
+        <h2>Biography</h2>
+        <p>I am a computer science student interested in web development and software engineering.</p>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+
+        <table border="1">
+            <caption>Educational Qualification</caption>
+
+            <thead>
+                <tr>
+                    <th>Degree</th>
+                    <th>Institution</th>
+                    <th>Year</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>SSC</td>
+                    <td>BAF SHAHEEN COLLEGE CHOTTAGRAM</td>
+                    <td>2019</td>
+                    <td>5.00</td>
+                </tr>
+
+                <tr>
+                    <td>HSC</td>
+                    <td>BAF SHAHEEN COLLEGE CHOTTAGRAM</td>
+                    <td>2021</td>
+                    <td>5.00</td>
+                </tr>
+
+                <tr>
+                    <td>BSc in CSE</td>
+                    <td>AIUB</td>
+                    <td>2026</td>
+                    <td>3.50</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact">
+        <h2>Contact Form</h2>
+
+        <form action="#" method="post">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name" maxlength="50"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email"><br><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="01XXXXXXXXX"><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" required placeholder="Write your message" maxlength="200"></textarea><br><br>
+
+            <input type="submit" value="Send">
+            <input type="reset" value="Reset">
+
+        </form>
+    </section>
+
+</main>
+
+<!-- Footer Section -->
+<footer>
+    <p>Contact: student@example.com</p>
+    <p>&copy; 2026 Academic Profile</p>
+</footer>
+</body>
+</html>
