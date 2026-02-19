@@ -1,0 +1,75 @@
+
+
+h1 {
+    font-size: 32px;
+}
+
+
+h2 {
+    margin-bottom: 1cm;
+}
+
+
+.container {
+    width: 80%;
+    margin: 2em auto; 
+    padding: 2rem;   
+    background-color: #f4f4f4d7;
+}
+
+
+.content {
+    font-size: 1.2em;
+}
+
+
+p {
+    font-size: 1rem;
+}
+
+
+body {
+    min-height: 100vh;
+}
+
+
+button {
+    width: 20vw;
+    height: 40px;
+    font-size: 1rem;
+}
+
+
+h1, h2 {
+    color: darkblue;
+    text-align: center;
+}
+
+div p {
+    color: green;
+}
+
+
+input[type="text"] {
+    padding: 10px;
+    width: 50%;
+    border: 2px solid gray;
+}
+
+
+a:hover {
+    color: red;
+    font-size: 18px;
+}
+
+
+input[type="text"]:focus {
+    border-color: blue;
+    background-color: #e6f2ff;
+}
+
+
+button:active {
+    background-color: rgb(0, 0, 0);
+    color: rgb(182, 176, 230);
+}
