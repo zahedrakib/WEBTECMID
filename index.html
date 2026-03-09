@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Manager</title>
+<style>
+li{
+padding:8px;
+margin:5px;
+border:1px solid #ccc;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.present{
+background:#d4edda;
+color:#155724;
+}
+
+.highlight{
+border:3px solid orange;
+}
+
+.controls button{
+margin-left:5px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Student List</h2>
+
+<input type="text" id="roll" placeholder="Roll No">
+<input type="text" id="name" placeholder="Student Name">
+<button id="addBtn" disabled>Add</button>
+
+<br><br>
+
+<input type="text" id="search" placeholder="Search student">
+
+<button onclick="sortStudents()">Sort A–Z</button>
+<button onclick="highlightFirst()">Highlight First Student</button>
+
+<ul id="studentList"></ul>
+
+<p id="count">Total students: 0</p>
+<p id="attendance">Present: 0, Absent: 0</p>
+
+<script>
+
+const rollInput = document.getElementById("roll")
+const nameInput = document.getElementById("name")
+const addBtn = document.getElementById("addBtn")
+const list = document.getElementById("studentList")
+const countText = document.getElementById("count")
+const attendanceText = document.getElementById("attendance")
+const searchInput = document.getElementById("search")
+
+// Enable/Disable Add button
+nameInput.addEventListener("input",()=>{
+addBtn.disabled = nameInput.value.trim() === ""
+})
+
+// Add student
+addBtn.onclick = function(){
+
+let roll = rollInput.value
+let name = nameInput.value
+
+let li = document.createElement("li")
+
+li.innerHTML = `
+<span class="studentText">${roll} - ${name}</span>
+
+<div class="controls">
+<label>
+<input type="checkbox" class="presentBox"> Present
+</label>
+
+<button class="editBtn">Edit</button>
+<button class="deleteBtn">Delete</button>
+</div>
+`
+
+list.appendChild(li)
+
+rollInput.value=""
+nameInput.value=""
+addBtn.disabled=true
+
+updateCount()
+updateAttendance()
+}
+
+// Delete student
+list.addEventListener("click",function(e){
+
+if(e.target.classList.contains("deleteBtn")){
+
+if(confirm("Are you sure you want to delete this student?")){
+e.target.closest("li").remove()
+updateCount()
+updateAttendance()
+}
+
+}
+
+})
+
+// Edit student
+list.addEventListener("click",function(e){
+
+if(e.target.classList.contains("editBtn")){
+
+let li = e.target.closest("li")
+let text = li.querySelector(".studentText").innerText
+
+let parts = text.split(" - ")
+
+let newRoll = prompt("Edit Roll No", parts[0])
+let newName = prompt("Edit Name", parts[1])
+
+if(newRoll && newName){
+li.querySelector(".studentText").innerText = newRoll + " - " + newName
+}
+
+}
+
+})
+
+// Present checkbox
+list.addEventListener("change",function(e){
+
+if(e.target.classList.contains("presentBox")){
+
+let li = e.target.closest("li")
+
+if(e.target.checked){
+li.classList.add("present")
+}else{
+li.classList.remove("present")
+}
+
+updateAttendance()
+
+}
+
+})
+
+// Search filter
+searchInput.addEventListener("input",function(){
+
+let search = searchInput.value.toLowerCase()
+let items = list.querySelectorAll("li")
+
+items.forEach(li=>{
+
+let text = li.innerText.toLowerCase()
+
+if(text.includes(search)){
+li.style.display="flex"
+}else{
+li.style.display="none"
+}
+
+})
+
+})
+
+// Sort students
+function sortStudents(){
+
+let items = Array.from(list.querySelectorAll("li"))
+
+items.sort((a,b)=>{
+
+let nameA = a.querySelector(".studentText").innerText.split(" - ")[1]
+let nameB = b.querySelector(".studentText").innerText.split(" - ")[1]
+
+return nameA.localeCompare(nameB)
+
+})
+
+items.forEach(li=>list.appendChild(li))
+
+}
+
+// Highlight first student
+function highlightFirst(){
+
+let items = list.querySelectorAll("li")
+
+items.forEach(li=>li.classList.remove("highlight"))
+
+if(items.length>0){
+items[0].classList.add("highlight")
+}
+
+}
+
+// Update student count
+function updateCount(){
+countText.innerText = "Total students: " + list.children.length
+}
+
+// Update attendance
+function updateAttendance(){
+
+let boxes = document.querySelectorAll(".presentBox")
+
+let present = 0
+
+boxes.forEach(b=>{
+if(b.checked) present++
+})
+
+let total = boxes.length
+let absent = total - present
+
+attendanceText.innerText = `Present: ${present}, Absent: ${absent}`
+
+}
+
+</script>
+
+</body>
+</html>
