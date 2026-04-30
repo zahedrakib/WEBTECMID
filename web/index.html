@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Info AJAX</title>
+</head>
+<body>
+ 
+    <h2>Student Information</h2>
+ 
+    <button onclick="loadStudent()">Fetch Student Info</button>
+ 
+    <div id="output" style="margin-top:20px;"></div>
+ 
+    <script>
+        function loadStudent() {
+            let xhr = new XMLHttpRequest();
+ 
+            xhr.open("GET", "student.php", true);
+ 
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    let student = JSON.parse(xhr.responseText);
+ 
+                    document.getElementById("output").innerHTML = `
+<h3>Student Details</h3>
+<p><b>Name:</b> ${student.name}</p>
+<p><b>ID:</b> ${student.id}</p>
+<p><b>Department:</b> ${student.department}</p>
+<p><b>CGPA:</b> ${student.cgpa}</p>
+                    `;
+                }
+            };
+ 
+            xhr.send();
+        }
+</script>
+ 
+</body>
+</html>
